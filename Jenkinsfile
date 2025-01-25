@@ -1,5 +1,5 @@
 node {
-    docker.image('python:2-alpine').inside {
+    docker.image('python:alpine3.21').inside {
         stage('Build') {
             sh 'python -m py_compile sources/add2vals.py sources/calc.py'
         }
@@ -11,6 +11,13 @@ node {
             }
         } finally {
             junit 'test-reports/results.xml'
+        }
+    }
+    docker.image('python:bullseye').inside('-u root') {
+        stage('Deploy') {
+            sh 'pip install pyinstaller'
+            sh 'pyinstaller --onefile sources/add2vals.py'
+            archiveArtifacts 'dist/add2vals'
         }
     }
 }
