@@ -13,6 +13,9 @@ node {
             junit 'test-reports/results.xml'
         }
     }
+    stage('Approval') {
+        input message: 'Lanjutkan ke tahap Deploy?'
+    }
     docker.image('python:bullseye').inside('-u root') {
         stage('Deploy') {
             sh 'pip install pyinstaller'
