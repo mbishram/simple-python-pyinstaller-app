@@ -17,6 +17,11 @@ node {
         stage('Deploy') {
             sh 'pip install pyinstaller'
             sh 'pyinstaller --onefile sources/add2vals.py'
+
+            echo "Sleep start at: ${new Date()}"
+            sleep time: 1, unit: "MINUTES"
+            echo "Sleep ended at: ${new Date()}"
+
             archiveArtifacts 'dist/add2vals'
         }
     }
