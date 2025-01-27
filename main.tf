@@ -34,7 +34,7 @@ resource "google_compute_firewall" "this" {
 resource "google_compute_instance" "this" {
   name         = "dicoding-devops-instance"
   description  = "Instance for Dicoding's DevOps learning path course."
-  machine_type = "e2-micro"
+  machine_type = "e2-small"
 
   boot_disk {
     initialize_params {
