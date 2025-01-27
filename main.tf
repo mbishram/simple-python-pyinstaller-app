@@ -46,4 +46,7 @@ resource "google_compute_instance" "this" {
     network = google_compute_network.this.id
     access_config {}
   }
+
+  # Config
+  allow_stopping_for_update = true
 }
